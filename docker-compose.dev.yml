@@ -1,0 +1,38 @@
+services:
+  backend-dev:
+    build:
+      context: ./backend
+      target: builder
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - PORT=4000
+    command: npm run dev
+    networks:
+      - app-network
+
+  frontend-dev:
+    build:
+      context: ./frontend
+      target: builder
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - REACT_APP_API_URL=http://localhost:4000
+    command: npm run dev
+    depends_on:
+      - backend-dev
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge 
