@@ -1,4 +1,4 @@
-# 🚀 Mon Scrappeur - Application de Scraping
+# 🚀 SCRAP-LEAD - Application de Scraping
 
 Application de scraping avec backend Node.js/TypeScript et frontend React, containerisée avec Docker.
 
